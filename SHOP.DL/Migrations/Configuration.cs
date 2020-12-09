@@ -1,9 +1,11 @@
 ﻿namespace SHOP.DL.Migrations
 {
     using System;
-    using System.Data.Entity;
+    
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Data.Entity.ModelConfiguration.Conventions;
+    using System.Data.Entity;
 
     internal sealed class Configuration : DbMigrationsConfiguration<SHOP.DL.ShopEntity>
     {
@@ -13,6 +15,8 @@
             ContextKey = "SHOP.DL.ShopEntity";
         }
 
+
+       
         protected override void Seed(SHOP.DL.ShopEntity context)
         {
             //  This method will be called after migrating to the latest version.

@@ -12,6 +12,25 @@ namespace SHOP.API.Controllers
     public class SellerController : ApiController
     {
         IUnitOfWork _unitOfworks = new UnitOfWork(new ShopEntity());
+     
+        [HttpGet]
+        [Route("validLogin")]
+        public HttpResponseMessage validLogin(string username,string password)
+        {
+            if(username == "admin"&& password == "admin")
+            {
+
+                return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(username));
+
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadGateway, "invalid User name and password");
+
+            }
+
+        }
+        
         [HttpGet]
         [Route("sellerList")]
         public HttpResponseMessage GetAllSellerList()

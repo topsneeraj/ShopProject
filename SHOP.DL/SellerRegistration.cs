@@ -56,8 +56,9 @@ namespace SHOP.DL
         /// <summary>
         /// seller auto generated Registration date
         /// </summary>
-        
-        
+
+        [Required]
+        [Column("seller_reg_date", TypeName = "Date")]
         public DateTime seller_reg_date { get; set; }
         /// <summary>
         ///  seller Update date 

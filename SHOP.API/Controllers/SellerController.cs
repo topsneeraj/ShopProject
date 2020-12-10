@@ -12,7 +12,12 @@ namespace SHOP.API.Controllers
     public class SellerController : ApiController
     {
         IUnitOfWork _unitOfworks = new UnitOfWork(new ShopEntity());
-     
+     /// <summary>
+     /// validate User Login
+     /// </summary>
+     /// <param name="username">Mand</param>
+     /// <param name="password">Mand</param>
+     /// <returns></returns>
         [HttpGet]
         [Route("validLogin")]
         public HttpResponseMessage validLogin(string username,string password)
@@ -30,9 +35,13 @@ namespace SHOP.API.Controllers
             }
 
         }
-        
+        /// <summary>
+        /// Show All seller List
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("sellerList")]
+        [CustomAuthicationFilter]
         public HttpResponseMessage GetAllSellerList()
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -40,8 +49,12 @@ namespace SHOP.API.Controllers
             dic.Add("data", _unitOfworks.SellerRegistration.getAll());
           return  Request.CreateResponse(HttpStatusCode.OK, dic);
           
-        }
-        [Route("getDataById")]
+        }/// <summary>
+        /// Show Seller Info By ID
+        /// </summary>
+        /// <param name="id">Mandory</param>
+        /// <returns></returns>
+        [Route("getDataById/{id}")]
         [HttpGet]
         public HttpResponseMessage GetDataById(int id)
         {
@@ -52,6 +65,11 @@ namespace SHOP.API.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, dic);
 
         }
+        /// <summary>
+        /// Add seller Info
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [Route("AddSeller")]
         [HttpPost]
         public HttpResponseMessage AddSeller(SellerRegistration obj)
